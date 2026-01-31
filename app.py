@@ -119,6 +119,64 @@ if uploaded_file is not None:
 
         TPR.append(sd(tp, tp+fn))
         FPR.append(sd(fp, fp+tn))
+        st.markdown("---")
+        st.subheader("📘 How to Interpret These Metrics")
+
+        with st.expander("Click to understand metrics & good performance thresholds"):
+            st.markdown("""
+        ### 🎯 Accuracy
+        - **What it means:** Overall correctness of the model  
+        - **Good value:** > **80%**  
+        - ⚠ Can be misleading for imbalanced datasets like medical data
+
+        ---
+
+        ### 🎯 Precision
+        - **What it means:** Of all patients predicted as having heart disease, how many truly do  
+        - **Good value:** > **60%**  
+        - Important when false positives are costly
+
+        ---
+
+        ### 🎯 Recall (Sensitivity) ⭐ *Most Important in Healthcare*
+        - **What it means:** Of all patients who actually have heart disease, how many were correctly detected  
+        - **Good value:** **> 70%**
+        - ⚠ Low recall means **missed sick patients**
+
+        ---
+
+        ### 🎯 F1 Score
+        - **What it means:** Balance between precision and recall  
+        - **Good value:** > **0.5**
+        - Useful when class distribution is uneven
+
+        ---
+
+        ### 🎯 Specificity
+        - **What it means:** Of all healthy patients, how many were correctly identified  
+        - **Good value:** > **90%**
+        - High specificity = fewer false alarms
+
+        ---
+
+        ### 🎯 AUC (Area Under ROC Curve)
+        - **What it means:** Ability to distinguish between sick and healthy patients  
+        - **Interpretation:**
+          - 0.5 → Random guessing  
+          - 0.7 – 0.8 → **Good**
+          - > 0.8 → **Strong**
+
+        ---
+
+        ### 🩺 Clinical Perspective
+        - In medical prediction:
+          - **Recall > Precision > Accuracy**
+          - False negatives are more dangerous than false positives
+        """)
+        if recall >= 0.7:
+            st.success("✅ Recall is in a clinically acceptable range.")
+        else:
+            st.warning("⚠ Recall is low. Model may miss heart disease cases.")
 
     auc = np.trapezoid(TPR, FPR)
 
