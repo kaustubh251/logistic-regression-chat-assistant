@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Heart Disease Prediction", layout="wide")
 
-st.title("🫀 Heart Disease Prediction App")
+st.title("Logistic Regression with L2 Regularization")
 st.markdown("Logistic Regression from scratch (Andrew Ng style)")
 
 # --------------------------------
