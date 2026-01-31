@@ -1,5 +1,5 @@
 #pip install streamlit pandas numpy matplotlib
-streamlit run app.py
+#streamlit run app.py
 
 import streamlit as st
 import pandas as pd
@@ -120,7 +120,7 @@ if uploaded_file is not None:
         TPR.append(sd(tp, tp+fn))
         FPR.append(sd(fp, fp+tn))
 
-    auc = np.trapz(TPR, FPR)
+    auc = np.trapezoid(TPR, FPR)
 
     fig, ax = plt.subplots()
     ax.plot(FPR, TPR, label=f"AUC = {abs(auc):.3f}")
